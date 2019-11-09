@@ -1,0 +1,79 @@
+﻿@using Bioscope.App.Helpers
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="MobileOptimized" content="320">
+    <title>@ViewData["Title"] | Bioscope.App </title>
+    <!-- Global stylesheets -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+    <link href="~/lib/template/g_assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
+    <link href="~/lib/template/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="~/lib/template/assets/css/bootstrap_limitless.min.css" rel="stylesheet" type="text/css">
+    <link href="~/lib/template/assets/css/layout.min.css" rel="stylesheet" type="text/css">
+    <link href="~/lib/template/assets/css/components.min.css" rel="stylesheet" type="text/css">
+    <link href="~/lib/template/assets/css/colors.min.css" rel="stylesheet" type="text/css">
+    <!-- /global stylesheets -->
+    <!-- Core JS files -->
+    <script src="~/lib/template/g_assets/js/main/jquery.min.js"></script>
+    <script src="~/lib/template/g_assets/js/main/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/template/g_assets/js/plugins/loaders/blockui.min.js"></script>
+    <script src="~/lib/template/g_assets/js/plugins/ui/ripple.min.js"></script>
+    <!-- /core JS files -->
+    <!-- Theme JS files -->
+    <script src="~/lib/template/g_assets/js/plugins/notifications/sweet_alert.min.js"></script>
+    <script src="~/lib/template/g_assets/js/plugins/forms/styling/switchery.min.js"></script>
+    <script src="~/lib/template/g_assets/js/plugins/forms/selects/bootstrap_multiselect.js"></script>
+    <script src="~/lib/template/g_assets/js/plugins/ui/moment/moment.min.js"></script>
+    <script src="~/lib/template/g_assets/js/plugins/pickers/daterangepicker.js"></script>
+    <script src="~/lib/template/g_assets/js/plugins/ui/perfect_scrollbar.min.js"></script>
+    <script src="~/lib/template/g_assets/js/plugins/notifications/noty.min.js"></script>
+    <script src="~/lib/template/g_assets/js/plugins/extensions/jquery_ui/interactions.min.js"></script>
+	  <script src="~/lib/template/g_assets/js/plugins/forms/selects/select2.min.js"></script>
+    <script src="~/lib/template/assets/js/app.js"></script>
+    <script src="~/lib/template/g_assets/js/demo_pages/dashboard.js"></script>
+    <script src="~/lib/template/assets/js/app-extended.js"></script>
+    <!-- /theme JS files -->
+</head>
+<body class="navbar-top">
+
+    <!-- Main navbar -->
+    @{ await Html.RenderPartialAsync("_MainNavbar"); }
+    <!-- /main navbar -->
+    <!-- Page content -->
+    <div class="page-content">
+        <!-- Main sidebar -->
+        @{ await Html.RenderPartialAsync("_MainSidebar"); }
+        <!-- /main sidebar -->
+        <!-- Main content -->
+        <div class="content-wrapper">
+
+            @RenderBody()
+
+            <!-- Footer -->
+            @{ await Html.RenderPartialAsync("_Footer"); }
+            <!-- /footer -->
+        </div>
+        <!-- /main content -->
+
+    </div>
+    <!-- /page content -->
+
+    <script>
+        try {
+            var config = @Html.Raw(Notifier.Message);
+            if (config) {
+                new Noty(config).show();
+            }
+            @{ Notifier.Remove(); }
+        } catch (error) {
+
+        }
+    </script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

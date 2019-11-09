@@ -1,0 +1,64 @@
+@model Bioscope.App.Areas.Admin.ViewModels.FeatureViewModel
+@{
+    ViewData["Title"] = Model.PageHeader.Title;
+}
+
+<!-- Page header -->
+@{ await Html.RenderPartialAsync("_PageHeader", Model.PageHeader); }
+<!-- /page header -->
+<!-- Content area -->
+<div class="content pt-0">
+    <div class="row">
+        <div class="col-md-12">
+            <!-- Text inputs -->
+            <div class="card">
+                <div class="card-header header-elements-inline">
+                    <h5 class="card-title">Edit Feature</h5>
+                    <div class="header-elements">
+                        <div class="list-icons">
+                            <a class="list-icons-item" data-action="collapse"></a>
+                            <a class="list-icons-item" data-action="remove"></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <div class="col-md-6">
+                        <form asp-action="edit" asp-controller="features" method="post" id="@Model.PageHeader.FormName">
+                            <input asp-for="Feature.Id" type="hidden" />
+                            <div class="form-group form-group-float">
+                                <label asp-for="Feature.Name" class="form-group-float-label animate">Feature name</label>
+                                <input asp-for="Feature.Name" type="text" class="form-control" placeholder="Feature name">
+                                <span asp-validation-for="Feature.Name" class="text-danger"></span>
+                            </div>
+                            <div class="form-group form-group-float">
+                                <label asp-for="Feature.Description" class="form-group-float-label animate">Description</label>
+                                <textarea asp-for="Feature.Description" class="form-control"></textarea>
+                                <span asp-validation-for="Feature.Description" class="text-danger"></span>
+                            </div>
+                            <div class="form-group form-group-float">
+                                <label asp-for="Feature.MaxAuthLevel" class="form-group-float-label animate">Max Auth Level</label>
+                                <input asp-for="Feature.MaxAuthLevel" type="number" value="0" class="form-control"/>
+                                <span asp-validation-for="Feature.MaxAuthLevel" class="text-danger"></span>
+                            </div>
+                            <div class="form-group form-group-float">
+                                <label asp-for="Feature.IsAuthorizable" class="form-group-float-label animate">Authorizable</label>
+                                <select asp-for="Feature.IsAuthorizable" data-placeholder="Select an option.." class="form-control select-search" data-fouc>
+                                    <option></option>
+                                    <option value="true">Yes</option>
+                                    <option value="false">No</option>
+                                </select>
+                                <span asp-validation-for="Feature.IsAuthorizable" class="text-danger"></span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /content area -->
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

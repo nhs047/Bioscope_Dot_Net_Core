@@ -1,0 +1,20 @@
+[
+  {
+    "Id": 1,
+    "Name": "SuperAdmin",
+    "AuthLevel": 0,
+    "Status": 2
+  },
+  {
+    "Id": 2,
+    "Name": "Admin",
+    "AuthLevel": 1,
+    "Status": 2
+  },
+  {
+    "Id": 3,
+    "Name": "User",
+    "AuthLevel": 0,
+    "Status": 2
+  }
+]

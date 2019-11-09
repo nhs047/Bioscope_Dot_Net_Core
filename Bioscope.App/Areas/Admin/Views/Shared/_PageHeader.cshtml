@@ -1,0 +1,30 @@
+﻿@model Bioscope.App.Areas.Admin.ViewModels.PageHeaderViewModel
+<div class="page-header page-header-light mb-2">
+    <div class="page-header-content header-elements-md-inline">
+        <div class="page-title d-flex">
+            <h4><i class="icon-arrow-left52 mr-2"></i> <span class="font-weight-semibold">@Model?.Title?.ToUpper()</span></h4>
+            <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
+        </div>
+        <div class="header-elements d-none text-center text-md-left mb-3 mb-md-0">
+            <div class="d-flex justify-content-between">
+                @if (!string.IsNullOrWhiteSpace(Model.CreatePage))
+                {
+                    <a class="btn bg-indigo-400" href="@Model.CreatePage"><i class="icon-stack2"></i> Add New</a>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.PageLink))
+                {
+                    <a class="btn btn-info ml-2" href="@Model.PageLink"><i class="icon-reload-alt"></i></a>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.Target))
+                {
+                    <a class="btn btn-info ml-2" href="@Model.Target"><i class="icon-arrow-left13"></i> Go Back</a>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.FormName))
+                {
+                    <button type="reset" form="@Model.FormName" class="btn btn-danger ml-2 btnReset"><i class="icon-reset"></i> Reset</button>
+                    <button type="submit" form="@Model.FormName" class="btn btn-success ml-2 btnSubmit"><i class="icon-floppy-disk"></i> Save</button>
+                }
+            </div>
+        </div>
+    </div>
+</div>

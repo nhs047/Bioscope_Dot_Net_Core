@@ -1,0 +1,94 @@
+﻿@model Bioscope.App.Areas.Admin.ViewModels.RoleViewModel
+@{
+    ViewData["Title"] = Model.PageHeader.Title;
+    int index = 0;
+}
+
+
+<!-- Page header -->
+@{ await Html.RenderPartialAsync("_PageHeader", Model.PageHeader); }
+<!-- /page header -->
+<!-- Content area -->
+<form asp-action="delete" asp-controller="roles" method="post" class="deleteForm" style="display:none">
+    <input type="hidden" name="Id" id="roleId"/>
+</form>
+<div class="content pt-0">
+    <div class="card">
+        <div class="card-header header-elements-inline">
+            <h5 class="card-title">Roles</h5>
+            <div class="header-elements">
+                <div class="list-icons">
+                    <a class="list-icons-item" data-action="collapse"></a>
+                    <a href="@Model.PageHeader.PageLink" class="list-icons-item"></a>
+                    <a class="list-icons-item" data-action="remove"></a>
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive table-scrollable" style="min-height: 300px">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="w-1">SL#</th>
+                        <th>Role Name</th>
+                        <th>Auth Level</th>
+                        <th>Status</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var role in Model.Roles)
+                    {
+                        index++;
+                        <tr>
+                            <td>@index</td>
+                            <td>@role.Name</td>
+                            <td>@role.AuthLevel</td>
+                            <td>@role.Status</td>
+                            <td class="text-right">
+                                <div class="btn-group">
+                                    <button type="button"
+                                            class="btn btn-group-sm btn-outline bg-slate-600 text-slate-600 border-slate dropdown-toggle"
+                                            data-toggle="dropdown"
+                                            aria-expanded="false">
+                                        Actions
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(105px, 36px, 0px);">
+                                        <a asp-controller="roles" asp-action="edit" asp-route-id="@role.Id" class="dropdown-item"><i class="icon-menu7"></i> Edit</a>
+                                        <a asp-controller="roles" asp-action="details" asp-route-id="@role.Id" class="dropdown-item"><i class="icon-screen-full"></i>See details</a>
+                                        <button class="dropdown-item" onclick="deleteRole(@role.Id)">
+                                            <i class="icon-trash"></i> Delete
+                                        </button>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- /content area -->
+
+@section Scripts {
+    <script>
+        function deleteRole(roleId) {
+            var $roleId = $("#roleId");
+            var $deleteForm = $(".deleteForm");
+            $roleId.val(roleId);
+            SweetAlert.confirm(
+                "Are you sure want to delete the Role?",
+                "You won't be able to undo the action.",
+                function () {
+                    $deleteForm.submit();
+                    $roleId.val(null);
+                }
+            );
+            //if (window.confirm("Are you sure want to delete the Role?")) {
+            //    $deleteForm.submit();
+            //}
+
+        }
+    </script>
+}

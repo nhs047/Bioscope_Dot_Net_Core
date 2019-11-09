@@ -1,0 +1,44 @@
+﻿@model Bioscope.App.Areas.Admin.ViewModels.RoleViewModel
+@{
+    ViewData["Title"] = Model.PageHeader.Title;
+}
+
+<!-- Page header -->
+@{ await Html.RenderPartialAsync("_PageHeader", Model.PageHeader); }
+<!-- /page header -->
+<!-- Content area -->
+<div class="content pt-0">
+    <div class="card">
+        <div class="card-header header-elements-inline">
+            <h5 class="card-title">Role Details</h5>
+            <div class="header-elements">
+                <div class="list-icons">
+                    <a class="list-icons-item" data-action="collapse"></a>
+                    <a href="@Model.PageHeader.PageLink" class="list-icons-item"></a>
+                    <a class="list-icons-item" data-action="remove"></a>
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table">
+                <tr>
+                    <th width="100px">@Html.DisplayNameFor(model => model.Role.Id)</th>
+                    <td>@Model.Role.Id</td>
+                </tr>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Role.Name)</th>
+                    <td>@Html.DisplayFor(model => model.Role.Name)</td>
+                </tr>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Role.AuthLevel)</th>
+                    <td>@Html.DisplayFor(model => model.Role.AuthLevel)</td>
+                </tr>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Role.Status)</th>
+                    <td>@Html.DisplayFor(model => model.Role.Status)</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- /content area -->

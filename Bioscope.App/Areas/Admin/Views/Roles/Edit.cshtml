@@ -1,0 +1,50 @@
+﻿@model Bioscope.App.Areas.Admin.ViewModels.RoleViewModel
+@{
+    ViewData["Title"] = Model.PageHeader.Title;
+}
+
+<!-- Page header -->
+@{ await Html.RenderPartialAsync("_PageHeader", Model.PageHeader); }
+<!-- /page header -->
+<!-- Content area -->
+<div class="content pt-0">
+    <div class="row">
+        <div class="col-md-12">
+            <!-- Text inputs -->
+            <div class="card">
+                <div class="card-header header-elements-inline">
+                    <h5 class="card-title">Edit Role</h5>
+                    <div class="header-elements">
+                        <div class="list-icons">
+                            <a class="list-icons-item" data-action="collapse"></a>
+                            <a class="list-icons-item" data-action="remove"></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <div class="col-md-6">
+                        <form asp-action="edit" asp-controller="roles" asp-route-id="@Model.Role.Id" method="post" id="@Model.PageHeader.FormName">
+                            <input asp-for="Role.Id" type="hidden" />
+                            <div class="form-group form-group-float">
+                                <label asp-for="Role.Name" class="form-group-float-label animate">Role name</label>
+                                <input asp-for="Role.Name" type="text" class="form-control" placeholder="Role name">
+                                <span asp-validation-for="Role.Name" class="text-danger"></span>
+                            </div>
+                            <div class="form-group form-group-float">
+                                <label asp-for="Role.AuthLevel" class="form-group-float-label animate">Auth Level</label>
+                                <input asp-for="Role.AuthLevel" value="0" type="number" class="form-control" placeholder="Auth level">
+                                <span asp-validation-for="Role.AuthLevel" class="text-danger"></span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /content area -->
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

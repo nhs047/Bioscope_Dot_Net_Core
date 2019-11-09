@@ -1,0 +1,20 @@
+[
+  {
+    "FirstName": "Super",
+    "LastName": "Admin",
+    "UserName": "superadmin",
+    "Email": "superadmin@bioscope.com",
+    "RoleId": 1,
+    "Password": "123456",
+    "ConfirmPassword": "123456"
+  },
+  {
+    "FirstName": "Admin",
+    "LastName": "Admin",
+    "UserName": "admin",
+    "Email": "admin@bioscope.com",
+    "RoleId": 2,
+    "Password": "123456",
+    "ConfirmPassword": "123456"
+  }
+]

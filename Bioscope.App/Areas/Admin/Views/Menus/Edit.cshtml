@@ -1,0 +1,65 @@
+@model Bioscope.App.Areas.Admin.ViewModels.MenuViewModel
+@{
+    ViewData["Title"] = Model.PageHeader.Title;
+}
+
+<!-- Page header -->
+@{ await Html.RenderPartialAsync("_PageHeader", Model.PageHeader); }
+<!-- /page header -->
+<!-- Content area -->
+<div class="content pt-0">
+    <div class="row">
+        <div class="col-md-12">
+            <!-- Text inputs -->
+            <div class="card">
+                <div class="card-header header-elements-inline">
+                    <h5 class="card-title">Edit Menu</h5>
+                    <div class="header-elements">
+                        <div class="list-icons">
+                            <a class="list-icons-item" data-action="collapse"></a>
+                            <a class="list-icons-item" data-action="remove"></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <div class="col-md-6">
+                        <form asp-action="edit" asp-controller="menus" asp-route-id="@Model.Menu.Id" method="post" id="@Model.PageHeader.FormName">
+                            <input asp-for="Menu.Id" type="hidden" />
+                            <div class="form-group form-group-float">
+                                <label asp-for="Menu.FeatureId" class="form-group-float-label animate">Feature</label>
+                                <input asp-for="Menu.FeatureId" type="number" class="form-control" placeholder="Feature">
+                                <span asp-validation-for="Menu.FeatureId" class="text-danger"></span>
+                            </div>
+                            <div class="form-group form-group-float">
+                                <label asp-for="Menu.CodeName" class="form-group-float-label animate">Code name</label>
+                                <input asp-for="Menu.CodeName" type="text" class="form-control" placeholder="Code name">
+                                <span asp-validation-for="Menu.CodeName" class="text-danger"></span>
+                            </div>
+                            <div class="form-group form-group-float">
+                                <label asp-for="Menu.Name" class="form-group-float-label animate">Menu name</label>
+                                <input asp-for="Menu.Name" type="text" class="form-control" placeholder="Menu name">
+                                <span asp-validation-for="Menu.Name" class="text-danger"></span>
+                            </div>
+                            <div class="form-group form-group-float">
+                                <label asp-for="Menu.GroupName" class="form-group-float-label animate">Group name</label>
+                                <input asp-for="Menu.GroupName" type="text" class="form-control" placeholder="Group name">
+                                <span asp-validation-for="Menu.GroupName" class="text-danger"></span>
+                            </div>
+                            <div class="form-group form-group-float">
+                                <label asp-for="Menu.RouteLink" class="form-group-float-label animate">Route</label>
+                                <input asp-for="Menu.RouteLink" type="text" class="form-control" placeholder="Route">
+                                <span asp-validation-for="Menu.RouteLink" class="text-danger"></span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /content area -->
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}
